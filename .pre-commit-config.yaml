@@ -1,0 +1,13 @@
+repos:
+  - repo: local
+    hooks:
+      - id: zero-leak-security-scan
+        name: Zero-Leak Security & PII Scan
+        entry: python scripts/security_scan.py --root .
+        language: system
+        pass_filenames: false
+      - id: matrix-schema-check
+        name: Validate Model Matrix Policy
+        entry: python scripts/generate_weekly_matrix.py --root . --check
+        language: system
+        pass_filenames: false

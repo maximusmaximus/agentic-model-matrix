@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "week_id": "2026-W47",
+  "generated_at": "2026-11-17T20:38:51Z",
+  "governance": {
+    "cadence": "weekly",
+    "requires_pr_merge": true,
+    "branch_prefix": "chore/weekly-matrix-"
+  },
+  "app_build_policy": {
+    "stage_id": "app_build",
+    "provider": "antigravity",
+    "model_family": "gemini",
+    "quota_fallback_enabled": true
+  },
+  "evaluation_sources": [
+    {
+      "id": "antigravity-docs",
+      "kind": "platform_docs",
+      "url": "https://antigravity.google/docs",
+      "status": "configured"
+    },
+    {
+      "id": "lmarena-coding",
+      "kind": "public_leaderboard",
+      "url": "https://lmarena.ai/leaderboard/coding",
+      "status": "configured"
+    },
+    {
+      "id": "swe-bench-verified",
+      "kind": "public_benchmark",
+      "url": "https://www.swebench.com/",
+      "status": "configured"
+    },
+    {
+      "id": "livebench-coding",
+      "kind": "public_benchmark",
+      "url": "https://livebench.ai/",
+      "status": "configured"
+    },
+    {
+      "id": "cloudflare-workers-docs",
+      "kind": "runtime_docs",
+      "url": "https://developers.cloudflare.com/workers/",
+      "status": "configured"
+    }
+  ],
+  "stages": [
+    {
+      "id": "triage",
+      "order": 1,
+      "title": "Transcript Triage & Signal Classification",
+      "primary_provider": "antigravity",
+      "primary_model": "gemini-3.8-flash-high",
+      "effort": "medium",
+      "cli_mode": "plan",
+      "fallback_chain": [
+        "gemini-3.8-flash-high",
+        "gemini-4-argon-medium",
+        "gemini-4-carbon-low"
+      ],
+      "selection_criteria": [
+        "Long-context speaker diarization fidelity",
+        "Low-latency structured JSON classification",
+        "Strict verbatim quote anchoring without hallucinated requirements"
+      ],
+      "best_practices": [
+        "Always anchor extracted requirements, research items, and non-goals to verbatim speaker quotes and utterance timestamps.",
+        "Treat auto-generated meeting summaries as unverified hints; extract only from raw transcript turns.",
+        "Separate explicit speaker consensus from contested points and open research items before generating specs."
+      ]
+    },
+    {
+      "id": "research",
+      "order": 2,
+      "title": "Deep Research & Technical Tradeoff Synthesis",
+      "primary_provider": "antigravity",
+      "primary_model": "gemini-4-carbon-high",
+      "effort": "high",
+      "cli_mode": "plan",
+      "fallback_chain": [
+        "gemini-4-carbon-high",
+        "gemini-4-hydrogen-high",
+        "claude-sonnet-5-5-high"
+      ],
+      "selection_criteria": [
+        "Accurate web/documentation synthesis with source citations",
+        "Bounded exploration under strict time and token budgets",
+        "Clear separation of low-risk technical defaults vs high-impact product choices"
+      ],
+      "best_practices": [
+        "Timebox each open-to-research question and cap search fan-out to avoid research loops.",
+        "Require primary documentation citations (official API docs, RFCs, or package registries) for every recommendation.",
+        "Pre-fill low-risk technical choices for review, but pause at Gate 1 whenever pricing, auth, data ownership, or scope is affected."
+      ]
+    },
+    {
+      "id": "consensus_specs",
+      "order": 3,
+      "title": "Consensus Promotion & Requirements Specification",
+      "primary_provider": "antigravity",
+      "primary_model": "gemini-4-hydrogen-high",
+      "effort": "high",
+      "cli_mode": "plan",
+      "fallback_chain": [
+        "gemini-4-hydrogen-high",
+        "claude-sonnet-5-5-high",
+        "gemini-4-carbon-high"
+      ],
+      "selection_criteria": [
+        "Deterministic traceability from quote_id and research_id to requirement_id",
+        "Strict negative-constraint enforcement for out-of-scope items"
+      ],
+      "best_practices": [
+        "Promote only multi-speaker or decision-maker-confirmed items into locked requirements (`REQ-*`).",
+        "Emit explicit negative constraints (`Out of scope`) and regression invariants (`Must not regress`) alongside acceptance criteria.",
+        "Require Gate 1 human approval before transitioning locked requirements into application code generation."
+      ]
+    },
+    {
+      "id": "architecture",
+      "order": 4,
+      "title": "System Architecture & Edge/Storage Blueprint",
+      "primary_provider": "antigravity",
+      "primary_model": "claude-opus-5-5-high",
+      "effort": "high",
+      "cli_mode": "plan",
+      "fallback_chain": [
+        "claude-opus-5-5-high",
+        "gemini-4-hydrogen-xhigh",
+        "gemini-4-hydrogen-high"
+      ],
+      "selection_criteria": [
+        "Boundary clarity across swappable provider adapters",
+        "Clean schema design for Cloudflare Workers, R2, and relational state",
+        "Minimal complexity and zero speculative abstractions"
+      ],
+      "best_practices": [
+        "Isolate external integrations (booking, calendar, call, transcript, repo, deploy) behind typed adapter interfaces.",
+        "Model Cloudflare R2 keys, webhook idempotency keys, and correlation keys explicitly before writing handlers.",
+        "Default to a single well-tested vertical slice when spinning up greenfield apps; use delta branches for follow-up meetings."
+      ]
+    },
+    {
+      "id": "app_build",
+      "order": 5,
+      "title": "Full-Stack Web App Implementation (Gemini on Antigravity)",
+      "primary_provider": "antigravity",
+      "model_family": "gemini",
+      "primary_model": "gemini-4-hydrogen-xhigh",
+      "effort": "xhigh",
+      "cli_mode": "accept-edits",
+      "fallback_chain": [
+        "gemini-4-hydrogen-xhigh",
+        "gemini-4-hydrogen-high",
+        "gemini-4-carbon-high",
+        "gemini-4-argon-high",
+        "gemini-3.8-flash-high"
+      ],
+      "selection_criteria": [
+        "Pinned strictly to Gemini models on Antigravity per platform policy",
+        "Ordered quota-aware fallback chain across Gemini 4 tiers",
+        "High multi-file TypeScript/Next.js/Cloudflare Workers and Python/FastAPI accuracy"
+      ],
+      "best_practices": [
+        "Scaffold against golden templates (Next.js App Router + TypeScript + Tailwind + Cloudflare Workers/R2, or FastAPI + React/Vite when Python is constrained).",
+        "Keep each feature vertical end-to-end: schema, API route, UI state, error state, and automated test.",
+        "If a Gemini tier hits a 5-hour or weekly quota limit mid-run, step down cleanly to the next Gemini fallback model while preserving the Antigravity conversation ID.",
+        "Never embed placeholder stubs for in-scope features or commit credentials, local paths, or private network names."
+      ]
+    },
+    {
+      "id": "qa_deploy",
+      "order": 6,
+      "title": "Verification, Security Scan & Cloudflare Deployment",
+      "primary_provider": "antigravity",
+      "primary_model": "gemini-4-carbon-high",
+      "effort": "high",
+      "cli_mode": "accept-edits",
+      "fallback_chain": [
+        "gemini-4-carbon-high",
+        "claude-sonnet-5-5-high",
+        "gemini-4-hydrogen-medium"
+      ],
+      "selection_criteria": [
+        "Automated build, lint, typecheck, and headless smoke-test execution",
+        "Zero-leak scanning before git push and Cloudflare Worker/R2 deploy"
+      ],
+      "best_practices": [
+        "Run typecheck, build, unit tests, HTTP health probes, and zero-leak secret/PII scans before opening Gate 2.",
+        "Verify R2 bucket bindings, Worker routes, and environment variables in preview environments prior to production promotion.",
+        "Open changes on `feat/<slice>` or `delta/<meeting-id>` branches; never push directly to `main`."
+      ]
+    }
+  ]
+}
