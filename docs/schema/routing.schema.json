@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agentic SDLC Model Routing Matrix",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "week_id",
+    "generated_at",
+    "governance",
+    "app_build_policy",
+    "stages"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "week_id": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{12,64}$"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "pages_url": {
+      "type": "string"
+    },
+    "governance": {
+      "type": "object",
+      "required": ["requires_pr_merge", "cadence"],
+      "properties": {
+        "requires_pr_merge": { "const": true },
+        "auto_merge_on_ci_pass": { "type": "boolean" },
+        "cadence": { "const": "weekly" },
+        "branch_prefix": { "type": "string" }
+      }
+    },
+    "app_build_policy": {
+      "type": "object",
+      "required": ["stage_id", "provider", "model_family"],
+      "properties": {
+        "stage_id": { "const": "app_build" },
+        "provider": { "const": "antigravity" },
+        "model_family": { "const": "gemini" },
+        "quota_fallback_enabled": { "type": "boolean" }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "stages_count": { "type": "integer", "minimum": 6, "maximum": 6 },
+        "unique_models_count": { "type": "integer", "minimum": 1 },
+        "total_fallback_slots": { "type": "integer", "minimum": 12 },
+        "best_practices_count": { "type": "integer", "minimum": 6 },
+        "sources_total": { "type": "integer", "minimum": 1 },
+        "sources_healthy": { "type": "integer", "minimum": 0 },
+        "sources_health_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "avg_source_latency_ms": { "type": ["number", "null"] },
+        "total_recorded_runs": { "type": "integer", "minimum": 1 },
+        "stage5_pinned_to_gemini": { "const": true }
+      }
+    },
+    "evaluation_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "url", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "url": { "type": "string" },
+          "status": { "type": "string" },
+          "http_status": { "type": ["integer", "null"] },
+          "healthy": { "type": ["boolean", "null"] },
+          "latency_ms": { "type": ["number", "null"] },
+          "last_modified": { "type": ["string", "null"] },
+          "checked_at": { "type": ["string", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "changes_since_previous": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "title",
+          "primary_provider",
+          "primary_model",
+          "effort",
+          "cli_mode",
+          "fallback_chain",
+          "selection_criteria",
+          "best_practices"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "triage",
+              "research",
+              "consensus_specs",
+              "architecture",
+              "app_build",
+              "qa_deploy"
+            ]
+          },
+          "order": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "title": { "type": "string", "minLength": 3 },
+          "primary_provider": { "type": "string", "minLength": 2 },
+          "model_family": { "type": "string" },
+          "primary_model": { "type": "string", "minLength": 3 },
+          "effort": { "enum": ["low", "medium", "high", "xhigh", "max"] },
+          "cli_mode": { "enum": ["plan", "accept-edits", "auto"] },
+          "fallback_chain": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "type": "string", "minLength": 3 }
+          },
+          "selection_criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 3 }
+          },
+          "best_practices": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 5 }
+          }
+        }
+      }
+    }
+  }
+}

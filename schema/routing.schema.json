@@ -22,11 +22,22 @@
     "generated_at": {
       "type": "string"
     },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{12,64}$"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "pages_url": {
+      "type": "string"
+    },
     "governance": {
       "type": "object",
       "required": ["requires_pr_merge", "cadence"],
       "properties": {
         "requires_pr_merge": { "const": true },
+        "auto_merge_on_ci_pass": { "type": "boolean" },
         "cadence": { "const": "weekly" },
         "branch_prefix": { "type": "string" }
       }
@@ -37,8 +48,47 @@
       "properties": {
         "stage_id": { "const": "app_build" },
         "provider": { "const": "antigravity" },
-        "model_family": { "const": "gemini" }
+        "model_family": { "const": "gemini" },
+        "quota_fallback_enabled": { "type": "boolean" }
       }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "stages_count": { "type": "integer", "minimum": 6, "maximum": 6 },
+        "unique_models_count": { "type": "integer", "minimum": 1 },
+        "total_fallback_slots": { "type": "integer", "minimum": 12 },
+        "best_practices_count": { "type": "integer", "minimum": 6 },
+        "sources_total": { "type": "integer", "minimum": 1 },
+        "sources_healthy": { "type": "integer", "minimum": 0 },
+        "sources_health_pct": { "type": "number", "minimum": 0, "maximum": 100 },
+        "avg_source_latency_ms": { "type": ["number", "null"] },
+        "total_recorded_runs": { "type": "integer", "minimum": 1 },
+        "stage5_pinned_to_gemini": { "const": true }
+      }
+    },
+    "evaluation_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "url", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "url": { "type": "string" },
+          "status": { "type": "string" },
+          "http_status": { "type": ["integer", "null"] },
+          "healthy": { "type": ["boolean", "null"] },
+          "latency_ms": { "type": ["number", "null"] },
+          "last_modified": { "type": ["string", "null"] },
+          "checked_at": { "type": ["string", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "changes_since_previous": {
+      "type": "array",
+      "items": { "type": "string" }
     },
     "stages": {
       "type": "array",
