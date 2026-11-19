@@ -1,0 +1,34 @@
+# Agentic Model Matrix
+
+> Machine-readable SDLC model routing matrix and weekly coding best practices.
+> Hard invariant: Stage 5 (`app_build`) is strictly pinned to Gemini models running on Antigravity (`agy`).
+
+## Live Metadata
+- Week ID: 2026-W47
+- Schema Version: 1.1.0
+- Last Updated (UTC): 2026-11-19T15:56:02Z
+- Content Hash: b30ad13b11b4c37fadc4c9feb2a8441a83204651320eaa3d866424443cf2d9f8
+- Live Dashboard: https://maximusmaximus.github.io/agentic-model-matrix/
+
+## Primary Machine Endpoints (GitHub Pages — CORS enabled)
+- [Routing Matrix JSON](https://maximusmaximus.github.io/agentic-model-matrix/routing.json): Authoritative 6-stage model selection, effort, CLI modes, and ordered fallback chains.
+- [Live Stats & Source Health JSON](https://maximusmaximus.github.io/agentic-model-matrix/stats.json): Probe health, latencies, model distribution, and Stage 5 compliance.
+- [Run & Change History JSON](https://maximusmaximus.github.io/agentic-model-matrix/history.json): Chronological ledger of CI runs and routing diffs.
+- [JSON Schema Contract](https://maximusmaximus.github.io/agentic-model-matrix/schema/routing.schema.json): JSON Schema Draft 2020-12 contract.
+- [Coding Best Practices Playbook](https://maximusmaximus.github.io/agentic-model-matrix/BEST_PRACTICES.md): Human- and agent-readable engineering guidelines per stage.
+- [Changelog](https://maximusmaximus.github.io/agentic-model-matrix/CHANGELOG.md): Recent model routing changes and telemetry updates.
+
+## Raw GitHub Endpoints
+- https://raw.githubusercontent.com/maximusmaximus/agentic-model-matrix/main/routing.json
+- https://raw.githubusercontent.com/maximusmaximus/agentic-model-matrix/main/stats.json
+- https://raw.githubusercontent.com/maximusmaximus/agentic-model-matrix/main/history.json
+- https://raw.githubusercontent.com/maximusmaximus/agentic-model-matrix/main/schema/routing.schema.json
+- https://raw.githubusercontent.com/maximusmaximus/agentic-model-matrix/main/BEST_PRACTICES.md
+
+## Active Stage Summary
+- Stage 1 (triage): primary=gemini-4-hydrogen-high effort=medium mode=plan | chain=[gemini-4-hydrogen-high -> gemini-4-neon-medium -> gemini-3.8-flash-high]
+- Stage 2 (research): primary=gemini-4-neon-high effort=high mode=plan | chain=[gemini-4-neon-high -> gemini-4-carbon-high -> claude-sonnet-5-5-high]
+- Stage 3 (consensus_specs): primary=gemini-4-neon-high effort=high mode=plan | chain=[gemini-4-neon-high -> claude-sonnet-5-5-high -> gemini-4-carbon-high]
+- Stage 4 (architecture): primary=claude-opus-5-5-high effort=high mode=plan | chain=[claude-opus-5-5-high -> gemini-4-carbon-high -> gemini-4-neon-xhigh]
+- Stage 5 (app_build): primary=gemini-4-neon-xhigh effort=xhigh mode=accept-edits | chain=[gemini-4-neon-xhigh -> gemini-4-carbon-high -> gemini-4-neon-high -> gemini-4-hydrogen-high -> gemini-4-argon-high]
+- Stage 6 (qa_deploy): primary=gemini-4-neon-high effort=high mode=accept-edits | chain=[gemini-4-neon-high -> gemini-4-hydrogen-high -> claude-sonnet-5-5-high]

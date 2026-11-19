@@ -1,7 +1,11 @@
-schema_version: "1.0.0"
+schema_version: "1.1.0"
 cadence: weekly
+repository: "maximusmaximus/agentic-model-matrix"
+pages_url: "https://maximusmaximus.github.io/agentic-model-matrix/"
+
 governance:
   requires_pr_merge: true
+  auto_merge_on_ci_pass: true
   branch_prefix: "chore/weekly-matrix-"
 
 hard_constraints:
@@ -13,11 +17,15 @@ evaluation_sources:
   - id: antigravity-docs
     kind: platform_docs
     url: https://antigravity.google/docs
-    notes: "Authoritative Antigravity CLI, model families, modes, and capability docs"
-  - id: lmarena-coding
+    notes: "Authoritative Antigravity CLI, model families, execution modes, and Orchestrator docs"
+  - id: antigravity-changelog
+    kind: platform_changelog
+    url: https://antigravity.google/changelog
+    notes: "Weekly Antigravity release notes, Gemini 4 model updates, and CLI capability changes"
+  - id: arena-coding
     kind: public_leaderboard
-    url: https://lmarena.ai/leaderboard/coding
-    notes: "Public coding evaluation signal for scope, architecture, and review stages"
+    url: https://arena.ai/
+    notes: "Public coding evaluation signal (formerly LMArena) for scope, architecture, and review stages"
   - id: swe-bench-verified
     kind: public_benchmark
     url: https://www.swebench.com/
@@ -36,15 +44,15 @@ stage_profiles:
     order: 1
     title: "Transcript Triage & Signal Classification"
     primary_provider: antigravity
-    primary_model: gemini-3.8-flash-high
+    primary_model: gemini-4-hydrogen-high
     effort: medium
     cli_mode: plan
     fallback_chain:
+      - gemini-4-hydrogen-high
+      - gemini-4-neon-medium
       - gemini-3.8-flash-high
-      - gemini-4-argon-medium
-      - gemini-4-carbon-low
     selection_criteria:
-      - "Long-context speaker diarization fidelity"
+      - "High-speed, low-cost long-context speaker diarization fidelity"
       - "Low-latency structured JSON classification"
       - "Strict verbatim quote anchoring without hallucinated requirements"
     best_practices:
@@ -56,17 +64,17 @@ stage_profiles:
     order: 2
     title: "Deep Research & Technical Tradeoff Synthesis"
     primary_provider: antigravity
-    primary_model: gemini-4-carbon-high
+    primary_model: gemini-4-neon-high
     effort: high
     cli_mode: plan
     fallback_chain:
+      - gemini-4-neon-high
       - gemini-4-carbon-high
-      - gemini-4-hydrogen-high
       - claude-sonnet-5-5-high
     selection_criteria:
-      - "Accurate web/documentation synthesis with source citations"
+      - "Grounded web/documentation synthesis with primary source citations"
+      - "Cost-efficient frontier reasoning (~32% lower cost/task than Carbon at High)"
       - "Bounded exploration under strict time and token budgets"
-      - "Clear separation of low-risk technical defaults vs high-impact product choices"
     best_practices:
       - "Timebox each open-to-research question and cap search fan-out to avoid research loops."
       - "Require primary documentation citations (official API docs, RFCs, or package registries) for every recommendation."
@@ -76,16 +84,17 @@ stage_profiles:
     order: 3
     title: "Consensus Promotion & Requirements Specification"
     primary_provider: antigravity
-    primary_model: gemini-4-hydrogen-high
+    primary_model: gemini-4-neon-high
     effort: high
     cli_mode: plan
     fallback_chain:
-      - gemini-4-hydrogen-high
+      - gemini-4-neon-high
       - claude-sonnet-5-5-high
       - gemini-4-carbon-high
     selection_criteria:
       - "Deterministic traceability from quote_id and research_id to requirement_id"
       - "Strict negative-constraint enforcement for out-of-scope items"
+      - "High-precision specification authoring across 512K context windows"
     best_practices:
       - "Promote only multi-speaker or decision-maker-confirmed items into locked requirements (`REQ-*`)."
       - "Emit explicit negative constraints (`Out of scope`) and regression invariants (`Must not regress`) alongside acceptance criteria."
@@ -100,10 +109,10 @@ stage_profiles:
     cli_mode: plan
     fallback_chain:
       - claude-opus-5-5-high
-      - gemini-4-hydrogen-xhigh
-      - gemini-4-hydrogen-high
+      - gemini-4-carbon-high
+      - gemini-4-neon-xhigh
     selection_criteria:
-      - "Boundary clarity across swappable provider adapters"
+      - "Long-horizon architectural clarity across swappable provider adapters"
       - "Clean schema design for Cloudflare Workers, R2, and relational state"
       - "Minimal complexity and zero speculative abstractions"
     best_practices:
@@ -116,38 +125,39 @@ stage_profiles:
     title: "Full-Stack Web App Implementation (Gemini on Antigravity)"
     primary_provider: antigravity
     model_family: gemini
-    primary_model: gemini-4-hydrogen-xhigh
+    primary_model: gemini-4-neon-xhigh
     effort: xhigh
     cli_mode: accept-edits
     fallback_chain:
-      - gemini-4-hydrogen-xhigh
-      - gemini-4-hydrogen-high
+      - gemini-4-neon-xhigh
       - gemini-4-carbon-high
+      - gemini-4-neon-high
+      - gemini-4-hydrogen-high
       - gemini-4-argon-high
-      - gemini-3.8-flash-high
     selection_criteria:
       - "Pinned strictly to Gemini models on Antigravity per platform policy"
-      - "Ordered quota-aware fallback chain across Gemini 4 tiers"
-      - "High multi-file TypeScript/Next.js/Cloudflare Workers and Python/FastAPI accuracy"
+      - "Frontier multi-file coding accuracy with Gemini 4 Neon (xhigh) and Carbon fallback"
+      - "Ordered quota-aware fallback chain across Gemini 4 tiers with Orchestrator support"
     best_practices:
       - "Scaffold against golden templates (Next.js App Router + TypeScript + Tailwind + Cloudflare Workers/R2, or FastAPI + React/Vite when Python is constrained)."
+      - "Pair Gemini 4 Neon as planner with parallel Gemini 4 Hydrogen subagents via Antigravity Orchestrator for multi-file feature slices."
       - "Keep each feature vertical end-to-end: schema, API route, UI state, error state, and automated test."
-      - "If a Gemini tier hits a 5-hour or weekly quota limit mid-run, step down cleanly to the next Gemini fallback model while preserving the Antigravity conversation ID."
+      - "If a Gemini tier hits a 5-hour or weekly quota limit mid-run, step down cleanly along `fallback_chain` while preserving the Antigravity conversation ID."
       - "Never embed placeholder stubs for in-scope features or commit credentials, local paths, or private network names."
 
   - id: qa_deploy
     order: 6
     title: "Verification, Security Scan & Cloudflare Deployment"
     primary_provider: antigravity
-    primary_model: gemini-4-carbon-high
+    primary_model: gemini-4-neon-high
     effort: high
     cli_mode: accept-edits
     fallback_chain:
-      - gemini-4-carbon-high
+      - gemini-4-neon-high
+      - gemini-4-hydrogen-high
       - claude-sonnet-5-5-high
-      - gemini-4-hydrogen-medium
     selection_criteria:
-      - "Automated build, lint, typecheck, and headless smoke-test execution"
+      - "Fast automated build, lint, typecheck, and headless smoke-test execution"
       - "Zero-leak scanning before git push and Cloudflare Worker/R2 deploy"
     best_practices:
       - "Run typecheck, build, unit tests, HTTP health probes, and zero-leak secret/PII scans before opening Gate 2."
