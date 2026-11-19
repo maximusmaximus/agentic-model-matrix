@@ -17,7 +17,7 @@ CI-automated **Coding Best Practices** and **6-Stage SDLC Model Routing Matrix**
 ## Live Matrix Status & Latest Updates
 
 <!-- MATRIX_LIVE_STATS:START -->
-> **Last Updated:** `2026-11-19T15:56:02Z` · **Week:** `2026-W47` · **Sources:** `6/6 (100%)` (avg `114 ms`) · **CI Runs:** `2` · **Hash:** `b30ad13b11b4`
+> **Last Updated:** `2026-11-19T16:05:28Z` · **Week:** `2026-W47` · **Sources:** `6/6 (100%)` (avg `178 ms`) · **CI Runs:** `3` · **Hash:** `b30ad13b11b4`
 
 | Stage | Phase | Primary Model | Effort | `agy` Mode | Fallback Chain |
 | --- | --- | --- | --- | --- | --- |
@@ -30,6 +30,7 @@ CI-automated **Coding Best Practices** and **6-Stage SDLC Model Routing Matrix**
 
 ### Latest Changes & Updates
 
+- **`2026-11-19T16:05:28Z`** (`2026-W47`, `workflow_dispatch`): Upstream update detected on `livebench-coding` (Last-Modified: Tue, 17 Nov 2026 21:07:20 GMT)
 - **`2026-11-19T15:56:02Z`** (`2026-W47`, `review-upgrade`): Schema version updated: v1.0.0 -> v1.1.0; Stage `triage` primary model: `gemini-3.8-flash-high` -> `gemini-4-hydrogen-high`; Stage `research` primary model: `gemini-4-carbon-high` -> `gemini-4-neon-high` (+12 more)
 - **`2026-11-17T20:38:51Z`** (`2026-W47`, `initial-baseline`): Initial weekly best-practices & SDLC model routing matrix baseline.
 <!-- MATRIX_LIVE_STATS:END -->
