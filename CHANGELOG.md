@@ -2,8 +2,13 @@
 
 Automated ledger of every matrix update, routing diff, and live source probe recorded by CI.
 
-- **Last Updated (UTC):** `2026-11-19T16:05:28Z`
-- **Recorded Runs:** `3` (retained up to `52`)
+- **Last Updated (UTC):** `2026-11-19T16:09:14Z`
+- **Recorded Runs:** `4` (retained up to `52`)
+
+## 2026-11-19T16:09:14Z — `2026-W47` (telemetry refresh)
+
+- **Trigger:** `workflow_dispatch` | **Hash:** `b30ad13b11b4` | **Sources:** `6/6 healthy, avg 140 ms`
+- Upstream update detected on `livebench-coding` (Last-Modified: Tue, 17 Nov 2026 21:07:21 GMT)
 
 ## 2026-11-19T16:05:28Z — `2026-W47` (telemetry refresh)
 
