@@ -2,9 +2,25 @@
   "schema_version": "1.1.0",
   "repository": "maximusmaximus/agentic-model-matrix",
   "max_entries": 52,
-  "updated_at": "2026-11-19T16:09:14Z",
-  "total_runs": 4,
+  "updated_at": "2026-11-20T14:29:53Z",
+  "total_runs": 5,
   "runs": [
+    {
+      "timestamp": "2026-11-20T14:29:53Z",
+      "week_id": "2026-W47",
+      "schema_version": "1.1.0",
+      "content_hash": "b30ad13b11b4c37fadc4c9feb2a8441a83204651320eaa3d866424443cf2d9f8",
+      "trigger": "ci-schedule",
+      "routing_changed": false,
+      "sources_healthy": 6,
+      "sources_total": 6,
+      "avg_latency_ms": 125.5,
+      "changes": [
+        "Upstream update detected on `antigravity-docs` (Last-Modified: Fri, 20 Nov 2026 04:04:49 GMT)",
+        "Upstream update detected on `antigravity-changelog` (Last-Modified: Fri, 20 Nov 2026 04:04:49 GMT)",
+        "Upstream update detected on `livebench-coding` (Last-Modified: Thu, 19 Nov 2026 18:01:32 GMT)"
+      ]
+    },
     {
       "timestamp": "2026-11-19T16:09:14Z",
       "week_id": "2026-W47",
