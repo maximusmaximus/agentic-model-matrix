@@ -2,9 +2,9 @@
 
 - **Week:** `2026-W47`
 - **Schema Version:** `1.1.0`
-- **Generated At (UTC):** `2026-11-21T13:49:37Z`
+- **Generated At (UTC):** `2026-11-22T13:42:54Z`
 - **Content Hash:** `b30ad13b11b4`
-- **Evaluation Sources:** `6/6` healthy (avg probe latency `114 ms`)
+- **Evaluation Sources:** `6/6` healthy (avg probe latency `100 ms`)
 - **Governance:** PR-merge gated (`requires_pr_merge: true`) — CI validates security, schema, tests, and site parity before merge.
 - **App Build Policy:** **Stage 5 (`app_build`) is strictly pinned to Gemini models running on Antigravity (`agy`)** with an ordered quota fallback chain.
 
@@ -131,9 +131,9 @@
 
 | Source ID | Kind | URL | Status | Latency | Last-Modified |
 | --- | --- | --- | --- | --- | --- |
-| `antigravity-docs` | `platform_docs` | https://antigravity.google/docs | `http_200` | `116 ms` | `Sat, 21 Nov 2026 05:31:54 GMT` |
-| `antigravity-changelog` | `platform_changelog` | https://antigravity.google/changelog | `http_200` | `118 ms` | `Sat, 21 Nov 2026 05:31:54 GMT` |
-| `arena-coding` | `public_leaderboard` | https://arena.ai/ | `http_200` | `138 ms` | — |
-| `swe-bench-verified` | `public_benchmark` | https://www.swebench.com/ | `http_200` | `67 ms` | `Tue, 01 Sep 2026 02:54:51 GMT` |
-| `livebench-coding` | `public_benchmark` | https://livebench.ai/ | `http_200` | `174 ms` | `Thu, 19 Nov 2026 18:01:32 GMT` |
-| `cloudflare-workers-docs` | `runtime_docs` | https://developers.cloudflare.com/workers/ | `http_200` | `72 ms` | — |
+| `antigravity-docs` | `platform_docs` | https://antigravity.google/docs | `http_200` | `164 ms` | `Sun, 22 Nov 2026 04:59:28 GMT` |
+| `antigravity-changelog` | `platform_changelog` | https://antigravity.google/changelog | `http_200` | `135 ms` | `Sun, 22 Nov 2026 04:59:28 GMT` |
+| `arena-coding` | `public_leaderboard` | https://arena.ai/ | `http_200` | `85 ms` | — |
+| `swe-bench-verified` | `public_benchmark` | https://www.swebench.com/ | `http_200` | `78 ms` | `Tue, 01 Sep 2026 02:54:51 GMT` |
+| `livebench-coding` | `public_benchmark` | https://livebench.ai/ | `http_200` | `86 ms` | `Thu, 19 Nov 2026 18:01:32 GMT` |
+| `cloudflare-workers-docs` | `runtime_docs` | https://developers.cloudflare.com/workers/ | `http_200` | `50 ms` | — |
