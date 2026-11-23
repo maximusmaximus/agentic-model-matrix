@@ -4,9 +4,9 @@
 > Hard invariant: Stage 5 (`app_build`) is strictly pinned to Gemini models running on Antigravity (`agy`).
 
 ## Live Metadata
-- Week ID: 2026-W47
+- Week ID: 2026-W48
 - Schema Version: 1.1.0
-- Last Updated (UTC): 2026-11-22T13:42:54Z
+- Last Updated (UTC): 2026-11-23T16:41:27Z
 - Content Hash: b30ad13b11b4c37fadc4c9feb2a8441a83204651320eaa3d866424443cf2d9f8
 - Live Dashboard: https://maximusmaximus.github.io/agentic-model-matrix/
 
