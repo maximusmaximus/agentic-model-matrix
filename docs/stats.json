@@ -1,19 +1,19 @@
 {
   "schema_version": "1.1.0",
   "week_id": "2026-W48",
-  "generated_at": "2026-11-25T16:20:32Z",
+  "generated_at": "2026-11-26T15:55:09Z",
   "content_hash": "b30ad13b11b4c37fadc4c9feb2a8441a83204651320eaa3d866424443cf2d9f8",
   "repository": "maximusmaximus/agentic-model-matrix",
   "pages_url": "https://maximusmaximus.github.io/agentic-model-matrix/",
   "last_update": {
-    "timestamp": "2026-11-25T16:20:32Z",
+    "timestamp": "2026-11-26T15:55:09Z",
     "week_id": "2026-W48",
     "trigger": "ci-schedule",
     "routing_changed": false,
     "diff_count": 2,
     "changes": [
-      "Upstream update detected on `antigravity-docs` (Last-Modified: Wed, 25 Nov 2026 00:55:21 GMT)",
-      "Upstream update detected on `antigravity-changelog` (Last-Modified: Wed, 25 Nov 2026 00:55:21 GMT)"
+      "Upstream update detected on `antigravity-docs` (Last-Modified: Thu, 26 Nov 2026 00:14:14 GMT)",
+      "Upstream update detected on `antigravity-changelog` (Last-Modified: Thu, 26 Nov 2026 00:14:14 GMT)"
     ]
   },
   "metrics": {
@@ -24,8 +24,8 @@
     "sources_total": 6,
     "sources_healthy": 6,
     "sources_health_pct": 100.0,
-    "avg_source_latency_ms": 210.3,
-    "total_recorded_runs": 10,
+    "avg_source_latency_ms": 114.4,
+    "total_recorded_runs": 11,
     "stage5_pinned_to_gemini": true,
     "total_routing_changes": 2,
     "last_model_change_at": "2026-11-19T15:56:02Z"
@@ -75,9 +75,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 239.4,
-      "last_modified": "Wed, 25 Nov 2026 00:55:21 GMT",
-      "checked_at": "2026-11-25T16:20:32Z"
+      "latency_ms": 202.0,
+      "last_modified": "Thu, 26 Nov 2026 00:14:14 GMT",
+      "checked_at": "2026-11-26T15:55:09Z"
     },
     {
       "id": "antigravity-changelog",
@@ -87,9 +87,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 233.0,
-      "last_modified": "Wed, 25 Nov 2026 00:55:21 GMT",
-      "checked_at": "2026-11-25T16:20:32Z"
+      "latency_ms": 136.1,
+      "last_modified": "Thu, 26 Nov 2026 00:14:14 GMT",
+      "checked_at": "2026-11-26T15:55:09Z"
     },
     {
       "id": "arena-coding",
@@ -99,9 +99,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 171.8,
+      "latency_ms": 102.3,
       "last_modified": null,
-      "checked_at": "2026-11-25T16:20:32Z"
+      "checked_at": "2026-11-26T15:55:09Z"
     },
     {
       "id": "swe-bench-verified",
@@ -111,9 +111,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 204.5,
+      "latency_ms": 81.9,
       "last_modified": "Tue, 01 Sep 2026 02:54:51 GMT",
-      "checked_at": "2026-11-25T16:20:32Z"
+      "checked_at": "2026-11-26T15:55:09Z"
     },
     {
       "id": "livebench-coding",
@@ -123,9 +123,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 302.2,
+      "latency_ms": 108.3,
       "last_modified": "Tue, 24 Nov 2026 00:11:21 GMT",
-      "checked_at": "2026-11-25T16:20:32Z"
+      "checked_at": "2026-11-26T15:55:09Z"
     },
     {
       "id": "cloudflare-workers-docs",
@@ -135,9 +135,9 @@
       "status": "http_200",
       "http_status": 200,
       "healthy": true,
-      "latency_ms": 110.9,
+      "latency_ms": 55.5,
       "last_modified": null,
-      "checked_at": "2026-11-25T16:20:32Z"
+      "checked_at": "2026-11-26T15:55:09Z"
     }
   ]
 }

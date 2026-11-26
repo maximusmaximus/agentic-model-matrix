@@ -2,8 +2,14 @@
 
 Automated ledger of every matrix update, routing diff, and live source probe recorded by CI.
 
-- **Last Updated (UTC):** `2026-11-25T16:20:32Z`
-- **Recorded Runs:** `10` (retained up to `52`)
+- **Last Updated (UTC):** `2026-11-26T15:55:09Z`
+- **Recorded Runs:** `11` (retained up to `52`)
+
+## 2026-11-26T15:55:09Z — `2026-W48` (telemetry refresh)
+
+- **Trigger:** `ci-schedule` | **Hash:** `b30ad13b11b4` | **Sources:** `6/6 healthy, avg 114 ms`
+- Upstream update detected on `antigravity-docs` (Last-Modified: Thu, 26 Nov 2026 00:14:14 GMT)
+- Upstream update detected on `antigravity-changelog` (Last-Modified: Thu, 26 Nov 2026 00:14:14 GMT)
 
 ## 2026-11-25T16:20:32Z — `2026-W48` (telemetry refresh)
 
